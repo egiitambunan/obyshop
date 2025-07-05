@@ -206,7 +206,7 @@
   
     // Load Dinamis dari Backend
     async function loadContentFromBackend() {
-      const res = await fetch("http://localhost:5000/api/content");
+      const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/content");
       const content = await res.json();
 
       if (content.heroTitle) document.getElementById("hero-title").innerHTML = content.heroTitle;
@@ -214,7 +214,7 @@
       if (content.heroTitleColor) document.getElementById("hero-title").style.color = content.heroTitleColor;
       if (content.heroSubtitleColor) document.getElementById("hero-subtitle").style.color = content.heroSubtitleColor;
       if (content.heroBackgroundImage) {
-        document.querySelector(".hero").style.backgroundImage = `url(http://localhost:5000${content.heroBackgroundImage})`;
+        document.querySelector(".hero").style.backgroundImage = `url(https://obyshop-backend-production-4831.up.railway.app${content.heroBackgroundImage})`;
       }
 
       if (content.aboutText) document.getElementById("about-text").textContent = content.aboutText;
@@ -245,7 +245,7 @@ if (content.aboutVideos && Array.isArray(content.aboutVideos)) {
       wrapper.appendChild(iframe);
     } else {
       const video = document.createElement("video");
-      video.src = v.videoUrl.startsWith("/") ? `http://localhost:5000${v.videoUrl}` : v.videoUrl;
+      video.src = v.videoUrl.startsWith("/") ? `https://obyshop-backend-production-4831.up.railway.app${v.videoUrl}` : v.videoUrl;
       video.controls = true;
       video.playsInline = true;
       video.muted = false;
@@ -295,7 +295,7 @@ if (content.aboutVideos && Array.isArray(content.aboutVideos)) {
     
   async function fetchProdukDariBackend() {
     try {
-      const res = await fetch("http://localhost:5000/api/products");
+      const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/products");
       const allProduk = await res.json();
       const container = document.getElementById("produk-terbaru");
       container.innerHTML = "";
@@ -323,7 +323,7 @@ if (content.aboutVideos && Array.isArray(content.aboutVideos)) {
         const div = document.createElement("div");
         div.className = "menu-card";
         div.innerHTML = `
-<img src="http://localhost:5000/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
+<img src="https://obyshop-backend-production-4831.up.railway.app/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
 <h3 class="menu-card-title">- ${p.nama || p.name} -</h3>
 <p class="menu-card-price">Rp ${(p.harga || p.price).toLocaleString("id-ID")}</p>
 <button onclick="addToCart('${p._id}', '${p.nama || p.name}', ${p.harga || p.price})">Tambah ke Keranjang</button>
