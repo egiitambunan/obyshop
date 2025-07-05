@@ -21,7 +21,7 @@
 
     async function fetchProduk() {
       try {
-        const res = await fetch("http://localhost:5000/api/products");
+        const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/products");
         const data = await res.json();
 
         const produkKategori = data.filter(p => p.kategori === kategori);
@@ -33,7 +33,7 @@
             const div = document.createElement("div");
             div.className = "produk-kategori-card";
             div.innerHTML = `
-              <img src="http://localhost:5000/uploads/products/${p.imageFilename}" alt="${p.nama}" class="produk-kategori-img" />
+              <img src="https://obyshop-backend-production-4831.up.railway.app/uploads/products/${p.imageFilename}" alt="${p.nama}" class="produk-kategori-img" />
               <div class="produk-kategori-info">
                 <h3>${p.nama}</h3>
                 <p class="produk-kategori-harga">Rp ${p.harga.toLocaleString("id-ID")}</p>
