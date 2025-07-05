@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     // Ambil konten umum dari backend
-    const res = await fetch("http://localhost:5000/api/content");
+    const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/content");
     const content = await res.json();
 
     // Hero Section
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (content.heroBackgroundImage) {
       const hero = document.querySelector(".hero");
       if (hero) {
-        hero.style.backgroundImage = `url(http://localhost:5000${content.heroBackgroundImage})`;
+        hero.style.backgroundImage = `url(https://obyshop-backend-production-4831.up.railway.app${content.heroBackgroundImage})`;
         hero.style.backgroundSize = "cover";
         hero.style.backgroundPosition = "center";
       }
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Produk
   try {
-    const res = await fetch("http://localhost:5000/api/products");
+    const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/products");
     const products = await res.json();
     const container = document.getElementById("produk-terbaru");
     if (!container) return;
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const div = document.createElement("div");
       div.className = "menu-card";
       div.innerHTML = `
-        <img src="http://localhost:5000/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
+        <img src="https://obyshop-backend-production-4831.up.railway.app/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
         <h3 class="menu-card-title">- ${p.nama || p.name} -</h3>
         <p class="menu-card-price">Rp ${(p.harga || p.price).toLocaleString("id-ID")}</p>
         <button onclick="addToCart('${p._id}', '${p.nama || p.name}', ${p.harga || p.price})">Tambah ke Keranjang</button>
