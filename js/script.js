@@ -36,7 +36,6 @@ document.querySelector(".wa-icon").addEventListener("click", function (e) {
 
 // Fungsi kirim ke WA dengan pertanyaan otomatis
 function sendWA(pesan) {
-  const nomor = "6281234567890"; // ganti dengan nomor WA kamu
   const url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
   window.open(url, "_blank");
 }
