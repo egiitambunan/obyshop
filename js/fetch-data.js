@@ -79,9 +79,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // WhatsApp Bubble & Button
     if (content.whatsapp?.bubbleButton) {
-      const bubble = document.querySelector(".wa-bubble a");
-      if (bubble) bubble.href = `https://wa.me/${content.whatsapp.bubbleButton}`;
-    }
+  whatsappBubbleNumber = content.whatsapp.bubbleButton;
+}
+
     if (content.whatsapp?.contactButton) {
       const cta = document.querySelector(".contact .cta");
       if (cta) cta.href = `https://wa.me/${content.whatsapp.contactButton}`;
