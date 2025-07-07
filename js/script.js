@@ -27,18 +27,6 @@ document.getElementById("shopping-cart").addEventListener("click", () => {
   window.location.href = "cart.html";
 });
 
-// Tampilkan pertanyaan saat klik ikon WA
-document.querySelector(".wa-icon").addEventListener("click", function (e) {
-  e.preventDefault();
-  const box = document.querySelector(".wa-questions");
-  box.style.display = box.style.display === "block" ? "none" : "block";
-});
-
-// Fungsi kirim ke WA dengan pertanyaan otomatis
-function sendWA(pesan) {
-  const url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
-  window.open(url, "_blank");
-}
 function addToCart(id, name, price) {
   let cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
