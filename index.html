@@ -174,7 +174,6 @@
     }
 
     function kirimPesan(pesan) {
-      const noHP = "6281234567890";
       const link = `https://wa.me/${noHP}?text=${encodeURIComponent(pesan)}`;
       window.open(link, "_blank");
     }
