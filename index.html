@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+z<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -174,9 +174,11 @@
     }
 
     function kirimPesan(pesan) {
-      const link = `https://wa.me/${noHP}?text=${encodeURIComponent(pesan)}`;
-      window.open(link, "_blank");
-    }
+    const waHref = document.querySelector(".wa-bubble a")?.href;
+    const nomor = waHref?.replace("https://wa.me/", "").split("?")[0] || "6281234567890";
+    const url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+    window.open(url, "_blank");
+  }
 
     document.addEventListener("click", function (e) {
       const bubble = document.getElementById("waBubble");
