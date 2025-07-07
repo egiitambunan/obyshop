@@ -267,9 +267,11 @@ if (content.aboutVideos && Array.isArray(content.aboutVideos)) {
         document.getElementById("contact-address").textContent = content.contactInfo.address;
       }
 
-      if (content.whatsapp?.bubbleButton) {
-        document.querySelector(".wa-bubble a").href = `https://wa.me/${content.whatsapp.bubbleButton}`;
-      }
+    if (content.whatsapp?.bubbleButton) {
+  whatsappBubbleNumber = content.whatsapp.bubbleButton; // simpan ke variabel global
+  document.querySelector(".wa-bubble a").href = `https://wa.me/${whatsappBubbleNumber}`;
+}
+
       if (content.whatsapp?.contactButton) {
         const cta = document.querySelector(".contact .cta");
         if (cta) cta.href = `https://wa.me/${content.whatsapp.contactButton}`;
