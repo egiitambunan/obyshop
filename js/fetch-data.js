@@ -1,3 +1,19 @@
+let produkData = [];
+
+async function fetchProduk() {
+  try {
+    const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/products");
+    const data = await res.json();
+
+    produkData = data.map(p => ({
+      nama: p.nama || p.name,
+      harga: p.harga || p.price,
+      gambar: https://obyshop-backend-production-4831.up.railway.app/uploads/products/${p.imageFilename},
+    }));
+  } catch (err) {
+    console.error("❌ Gagal mengambil produk:", err);
+  }
+}
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     // Ambil konten umum dari backend
