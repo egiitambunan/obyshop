@@ -140,7 +140,7 @@ async function fetchProduk() {
     produkData = data.map(p => ({
       nama: p.nama || p.name,
       harga: p.harga || p.price,
-      gambar: https://obyshop-backend-production-4831.up.railway.app/uploads/products/${p.imageFilename}
+      gambar: 'https://obyshop-backend-production-4831.up.railway.app/uploads/products/${p.imageFilename}'
     }));
   } catch (err) {
     console.error("❌ Gagal fetch produk:", err);
