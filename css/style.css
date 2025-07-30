@@ -264,19 +264,6 @@ body {
   justify-content: center;
 }
 
-.menu .row .menu-card {
-  text-align: center;
-  padding-bottom: 4rem;
-}
-
-.menu .row .menu-card img {
-  border-radius: 50%;
-  width: 60%;
-}
-
-.menu .row .menu-card .menu-card-title {
-  margin: 1rem auto 0.5rem;
-}
 .menu-card button {
   background-color: var(--primary);
   color: white;
@@ -504,6 +491,14 @@ footer .credit a {
 }
 .navbar-extra button#searchBtn:hover {
   background-color: #a76e3f;
+}
+
+.produk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
 }
 
 /* Media Queries */
