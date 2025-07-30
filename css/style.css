@@ -491,14 +491,14 @@ footer .credit a {
 }
 
 /* ==== PRODUK (GRID RAPI) ==== */
-.produk-grid {
+.produk-terbaru {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.5rem;
   padding: 2rem 1rem;
 }
 
-.produk-item {
+.produk-terbaru item {
   background-color: #1f1f1f;
   border-radius: 12px;
   overflow: hidden;
@@ -510,7 +510,7 @@ footer .credit a {
   padding: 1rem;
 }
 
-.produk-item .info {
+.produk-terbaru item .info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -519,10 +519,10 @@ footer .credit a {
   width: 100%;
 }
 
-.produk-item:hover {
+.produk-terbaru item:hover {
   transform: translateY(-5px);
 }
-.produk-item img {
+.produk-terbaru item img {
   width: 100%;
   height: 160px;
   object-fit: cover;
@@ -531,14 +531,14 @@ footer .credit a {
   background-color: #121212;
   margin-bottom: 1rem;
 }
-.produk-item h3 {
+.produk-terbaru item h3 {
   font-size: 1.1rem;
   margin-bottom: 0.3rem;
   text-align: center;
   color: #fff;
 }
 
-.produk-item .harga {
+.produk-terbaru item .harga {
   font-size: 1rem;
   font-weight: bold;
   color: var(--primary);
@@ -546,7 +546,7 @@ footer .credit a {
   text-align: center;
 }
 
-.produk-item button {
+.produk-terbaru item button {
   background-color: var(--primary);
   color: #fff;
   padding: 0.5rem 1.2rem;
@@ -557,7 +557,7 @@ footer .credit a {
   transition: background-color 0.2s ease;
 }
 
-.produk-item button:hover {
+.produk-terbaru item button:hover {
   background-color: #a16d3a;
 }
 
