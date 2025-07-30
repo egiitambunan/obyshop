@@ -22,17 +22,7 @@
     <div class="navbar-nav">
       <a href="#">Home</a>
       <a href="#about">Tentang Kami</a>
-      <div class="dropdown">
-        <a href="#menu">Menu</a>
-        <div class="dropdown-content">
-          <a href="kategori.html?kategori=Aksesoris">Aksesoris</a>
-          <a href="kategori.html?kategori=Aksesoris HP">Aksesoris HP</a>
-          <a href="kategori.html?kategori=Gelang">Gelang</a>
-          <a href="kategori.html?kategori=Gantungan Kunci">Gantungan Kunci</a>
-          <a href="kategori.html?kategori=Charger">Charger</a>
-          <a href="kategori.html?kategori=Mainan">Mainan</a>
-        </div>
-      </div>
+     <a href="#menu">Menu</a> 
       <a href="#contact">Kontak</a>
     </div>
     <div class="navbar-extra">
@@ -296,47 +286,31 @@ if (content.aboutVideos && Array.isArray(content.aboutVideos)) {
 
     loadContentFromBackend();
     
-  async function fetchProdukDariBackend() {
-    try {
-      const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/products");
-      const allProduk = await res.json();
-      const container = document.getElementById("produk-terbaru");
-      container.innerHTML = "";
+async function fetchProdukDariBackend() {
+  try {
+    const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/products");
+    const allProduk = await res.json();
+    const container = document.getElementById("produk-terbaru");
+    container.innerHTML = "";
 
-      // Ambil 1 produk per kategori
-      const kategoriMap = {};
-      allProduk.forEach((p) => {
-        if (!kategoriMap[p.kategori]) {
-          kategoriMap[p.kategori] = p;
-        }
-      });
+    // Tampilkan semua produk dari backend tanpa filter kategori
+    const tampilkan = allProduk;
 
-      // Ambil 2 produk terbaru atau produk utama
-      const terbaruUtama = allProduk
-        .filter(p => p.produkBaru || p.produkUtama)
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .slice(0, 2);
-
-      // Gabungkan, hilangkan duplikat
-      const tampilkan = [...Object.values(kategoriMap), ...terbaruUtama].filter(
-        (v, i, a) => a.findIndex(p => p._id === v._id) === i
-      );
-
-      tampilkan.forEach((p) => {
-        const div = document.createElement("div");
-        div.className = "menu-card";
-        div.innerHTML = `
+    tampilkan.forEach((p) => {
+      const div = document.createElement("div");
+      div.className = "menu-card";
+      div.innerHTML = `
 <img src="https://obyshop-backend-production-4831.up.railway.app/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
 <h3 class="menu-card-title">- ${p.nama || p.name} -</h3>
 <p class="menu-card-price">Rp ${(p.harga || p.price).toLocaleString("id-ID")}</p>
 <button onclick="addToCart('${p._id}', '${p.nama || p.name}', ${p.harga || p.price})">Tambah ke Keranjang</button>
-        `;
-        container.appendChild(div);
-      });
-    } catch (err) {
-      console.error("❌ Gagal fetch produk dari backend:", err);
-    }
+      `;
+      container.appendChild(div);
+    });
+  } catch (err) {
+    console.error("❌ Gagal fetch produk dari backend:", err);
   }
+}
 
   function addToCart(id, nama, harga) {
     let cart = JSON.parse(localStorage.getItem("cart") || "[]");
