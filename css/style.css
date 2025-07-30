@@ -493,10 +493,9 @@ footer .credit a {
 /* ==== PRODUK (GRID RAPI) ==== */
 .produk-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  justify-content: center;
-  padding: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 1rem;
 }
 
 .produk-item {
@@ -511,18 +510,27 @@ footer .credit a {
   padding: 1rem;
 }
 
+.produk-item .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: center;
+  width: 100%;
+}
+
 .produk-item:hover {
   transform: translateY(-5px);
 }
-
 .produk-item img {
   width: 100%;
-  height: 180px;
+  height: 160px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
+  border: 2px solid #333;
+  background-color: #121212;
   margin-bottom: 1rem;
 }
-
 .produk-item h3 {
   font-size: 1.1rem;
   margin-bottom: 0.3rem;
