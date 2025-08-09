@@ -6,139 +6,21 @@
   <title>Keranjang Belanja</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      margin: 0;
-      padding: 2rem;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .cart-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      padding: 1rem 0;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .cart-item img {
-      width: 80px;
-      height: 80px;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .cart-item-info {
-      flex: 2;
-      min-width: 150px;
-    }
-
-    .cart-item-info h4 {
-      margin: 0 0 4px 0;
-      font-size: 1.1rem;
-    }
-
-    .cart-item-info small {
-      color: #555;
-      font-size: 0.9rem;
-      display: block;
-    }
-
-    .cart-qty {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .cart-qty button {
-      width: 28px;
-      height: 28px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      background: none;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .cart-qty input {
-      width: 40px;
-      text-align: center;
-      border: none;
-      font-weight: bold;
-      background: #f0f0f0;
-    }
-
-    .cart-remove {
-      color: red;
-      font-size: 1.3rem;
-      cursor: pointer;
-    }
-
-    .cart-summary {
-      text-align: right;
-      margin-top: 2rem;
-      font-size: 1.1rem;
-    }
-
-    .checkout-btn {
-      background: #25D366;
-      color: white;
-      padding: 1rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-      max-width: 300px;
-      display: block;
-      margin: 2rem auto 0;
-    }
-
-    .empty {
-      text-align: center;
-      color: #888;
-    }
-
-    .clear-btn {
-      text-align: right;
-      margin-top: 1rem;
-    }
-
-    .clear-btn button {
-      background: #f44336;
-      color: white;
-      padding: 0.6rem 1rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-  </style>
 </head>
-<body>
+<body class="halaman-keranjang">
   <h2>Keranjang Belanja</h2>
   <div id="cart-list"></div>
   <div class="cart-summary" id="cart-summary"></div>
-  <div class="clear-btn" id="clear-btn" style="display:none;">
-    <button onclick="clearCart()"><i class="fas fa-trash"></i> Hapus Semua</button>
-  </div>
   <button class="checkout-btn" id="waBtn" style="display:none;">
     <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
   </button>
 
+  <script src="js/produk.js"></script>
   <script>
     let cart = JSON.parse(localStorage.getItem("cart") || "[]");
     const container = document.getElementById("cart-list");
     const summary = document.getElementById("cart-summary");
     const waBtn = document.getElementById("waBtn");
-    const clearBtn = document.getElementById("clear-btn");
 
     function formatRupiah(num) {
       return 'IDR ' + num.toLocaleString("id-ID");
@@ -152,7 +34,6 @@
       if (cart.length === 0) {
         container.innerHTML = "<p class='empty'>Keranjang Anda kosong.</p>";
         waBtn.style.display = "none";
-        clearBtn.style.display = "none";
         return;
       }
 
@@ -166,14 +47,14 @@
           <img src="${item.gambar}" alt="${item.nama}" />
           <div class="cart-item-info">
             <h4>${item.nama}</h4>
-            <small>Harga satuan: ${formatRupiah(item.harga)}</small>
-            <small>Total: ${formatRupiah(itemTotal)}</small>
+            <small>Harga Satuan: ${formatRupiah(item.harga)}</small><br>
+            <div class="cart-qty">
+              <button onclick="ubahQty(${i}, -1)">-</button>
+              <input type="text" value="${item.qty}" readonly />
+              <button onclick="ubahQty(${i}, 1)">+</button>
+            </div>
           </div>
-          <div class="cart-qty">
-            <button onclick="ubahQty(${i}, -1)">-</button>
-            <input type="text" value="${item.qty}" readonly />
-            <button onclick="ubahQty(${i}, 1)">+</button>
-          </div>
+          <div class="cart-price">${formatRupiah(itemTotal)}</div>
           <div class="cart-remove" onclick="hapusItem(${i})"><i class="fas fa-trash"></i></div>
         `;
         container.appendChild(row);
@@ -181,7 +62,6 @@
 
       summary.innerHTML = `<strong>Total Belanja: ${formatRupiah(total)}</strong>`;
       waBtn.style.display = "block";
-      clearBtn.style.display = "block";
     }
 
     function ubahQty(index, val) {
@@ -195,14 +75,6 @@
       cart.splice(index, 1);
       localStorage.setItem("cart", JSON.stringify(cart));
       renderCart();
-    }
-
-    function clearCart() {
-      if (confirm("Yakin ingin menghapus semua item di keranjang?")) {
-        cart = [];
-        localStorage.removeItem("cart");
-        renderCart();
-      }
     }
 
     document.getElementById("waBtn").addEventListener("click", () => {
