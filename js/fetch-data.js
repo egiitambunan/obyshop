@@ -1,107 +1,76 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const base = "http://localhost:5000";
+
   try {
-    // Ambil konten umum dari backend
-    const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/content");
+    const res = await fetch(`${base}/api/content`);
     const content = await res.json();
 
-    // Hero Section
-    if (content.heroTitle) document.getElementById("hero-title").innerHTML = content.heroTitle;
-    if (content.heroSubtitle) document.getElementById("hero-subtitle").textContent = content.heroSubtitle;
-    if (content.heroTitleColor) document.getElementById("hero-title").style.color = content.heroTitleColor;
-    if (content.heroSubtitleColor) document.getElementById("hero-subtitle").style.color = content.heroSubtitleColor;
+    // === HERO ===
+    const elHeroTitle = document.getElementById("hero-title");
+    const elHeroSubtitle = document.getElementById("hero-subtitle");
+    if (content.heroTitle && elHeroTitle) elHeroTitle.innerHTML = content.heroTitle;
+    if (content.heroSubtitle && elHeroSubtitle) elHeroSubtitle.textContent = content.heroSubtitle;
+    if (content.heroTitleColor && elHeroTitle) elHeroTitle.style.color = content.heroTitleColor;
+    if (content.heroSubtitleColor && elHeroSubtitle) elHeroSubtitle.style.color = content.heroSubtitleColor;
     if (content.heroBackgroundImage) {
-      const hero = document.querySelector(".hero");
-      if (hero) {
-        hero.style.backgroundImage = `url(https://obyshop-backend-production-4831.up.railway.app${content.heroBackgroundImage})`;
-        hero.style.backgroundSize = "cover";
-        hero.style.backgroundPosition = "center";
+      const heroEl = document.querySelector(".hero");
+      if (heroEl) {
+        const img = content.heroBackgroundImage;
+        const full = img.startsWith("http") ? img : `${base}${img.startsWith("/") ? img : "/" + img}`;
+        heroEl.style.backgroundImage = `url(${full})`;
       }
     }
 
-    // Tentang Kami (Video)
-    if (Array.isArray(content.aboutVideos)) {
-      content.aboutVideos.forEach((video, index) => {
-        const wrapper = document.getElementById(`videoWrapper${index + 1}`);
-        const title = document.getElementById(`title${index + 1}`);
-        const desc = document.getElementById(`desc${index + 1}`);
-
-        if (title && video.title) title.textContent = video.title;
-        if (desc && video.desc) desc.textContent = video.desc;
-
-        if (wrapper && video.videoUrl) {
-          wrapper.innerHTML = "";
-
-          // Cek apakah link YouTube
-          if (video.videoUrl.startsWith("http") && video.videoUrl.includes("youtube.com")) {
-            const iframe = document.createElement("iframe");
-            iframe.src = video.videoUrl.replace("watch?v=", "embed/") + "?autoplay=0&mute=1";
-            iframe.frameBorder = 0;
-            iframe.allow = "autoplay; encrypted-media";
-            iframe.allowFullscreen = true;
-            iframe.style.width = "100%";
-            iframe.style.aspectRatio = "16/9";
-            wrapper.appendChild(iframe);
-          } else {
-            const videoEl = document.createElement("video");
-            videoEl.src = video.videoUrl.startsWith("/")
-              ? `http://localhost:5000${video.videoUrl}`
-              : video.videoUrl;
-            videoEl.controls = true;
-            videoEl.playsInline = true;
-            videoEl.autoplay = false;
-            videoEl.muted = false;
-            videoEl.style.width = "100%";
-            wrapper.appendChild(videoEl);
-          }
-        }
-      });
-    }
-
-    // Kontak
+    // === KONTAK ===
     if (content.contactInfo?.phone) {
-      const el = document.getElementById("contact-phone");
-      if (el) {
-        el.textContent = content.contactInfo.phone;
-        el.href = `https://wa.me/${content.contactInfo.phone}`;
+      const phoneEl = document.getElementById("contact-phone");
+      if (phoneEl) {
+        phoneEl.textContent = content.contactInfo.phone;
+        if (phoneEl.tagName === "A") {
+          phoneEl.href = `https://wa.me/${content.contactInfo.phone}`;
+        } else {
+          const phoneAnchor = document.querySelector("#contact-phone-link");
+          if (phoneAnchor) phoneAnchor.href = `https://wa.me/${content.contactInfo.phone}`;
+        }
       }
     }
     if (content.contactInfo?.email) {
-      const el = document.getElementById("contact-email");
-      if (el) {
-        el.textContent = content.contactInfo.email;
-        el.href = `mailto:${content.contactInfo.email}`;
+      const emailEl = document.getElementById("contact-email");
+      if (emailEl) {
+        emailEl.textContent = content.contactInfo.email;
+        if (emailEl.tagName === "A") emailEl.href = `mailto:${content.contactInfo.email}`;
       }
     }
     if (content.contactInfo?.address) {
-      const el = document.getElementById("contact-address");
-      if (el) el.textContent = content.contactInfo.address;
+      const addrEl = document.getElementById("contact-address");
+      if (addrEl) addrEl.textContent = content.contactInfo.address;
     }
 
-    // WhatsApp Bubble & Button
+    // === WHATSAPP ===
     if (content.whatsapp?.bubbleButton) {
-  whatsappBubbleNumber = content.whatsapp.bubbleButton;
-}
-
+      const bubble = document.querySelector(".wa-bubble a");
+      if (bubble) bubble.href = `https://wa.me/${content.whatsapp.bubbleButton}`;
+    }
     if (content.whatsapp?.contactButton) {
       const cta = document.querySelector(".contact .cta");
       if (cta) cta.href = `https://wa.me/${content.whatsapp.contactButton}`;
     }
 
-    // Social Media
+    // === SOCIAL MEDIA ===
     if (content.socialMedia?.instagram) {
-      const el = document.querySelector(".socials .fa-instagram");
-      if (el?.parentElement) el.parentElement.href = content.socialMedia.instagram;
+      const ig = document.querySelector(".socials .fa-instagram");
+      if (ig?.parentElement) ig.parentElement.href = content.socialMedia.instagram;
     }
     if (content.socialMedia?.facebook) {
-      const el = document.querySelector(".socials .fa-facebook");
-      if (el?.parentElement) el.parentElement.href = content.socialMedia.facebook;
+      const fb = document.querySelector(".socials .fa-facebook");
+      if (fb?.parentElement) fb.parentElement.href = content.socialMedia.facebook;
     }
     if (content.socialMedia?.tiktok) {
-      const el = document.querySelector(".socials .fa-tiktok");
-      if (el?.parentElement) el.parentElement.href = content.socialMedia.tiktok;
+      const tt = document.querySelector(".socials .fa-tiktok");
+      if (tt?.parentElement) tt.parentElement.href = content.socialMedia.tiktok;
     }
 
-    // Warna Tema
+    // === THEME COLORS ===
     if (content.theme?.primaryColor) {
       document.documentElement.style.setProperty("--primary", content.theme.primaryColor);
     }
@@ -112,59 +81,116 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ Gagal mengambil konten:", err);
   }
 
-  // Produk
+  // === PRODUK ===
   try {
-    const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/products");
+    const res = await fetch(`${base}/api/products`);
     const products = await res.json();
-    const container = document.getElementById("produk-terbaru");
-    if (!container) return;
 
-    container.innerHTML = "";
+    // Simpan data produk untuk pencarian dan tampilan
+    window.produkData = products.map((p) => ({
+      _id: p._id,
+      nama: p.nama || p.name || "",
+      harga: p.harga ?? p.price ?? 0,
+      deskripsi: p.deskripsi || "",
+      gambar: p.imageFilename
+        ? `${base}/uploads/products/${p.imageFilename}`
+        : "https://via.placeholder.com/300x200?text=No+Image",
+    }));
 
-    // Kelompokkan produk berdasarkan kategori (1 per kategori)
-    const kategoriMap = {};
-    products.forEach((p) => {
-      if (!kategoriMap[p.kategori]) {
-        kategoriMap[p.kategori] = p;
-      }
-    });
-    // Ambil 2 produk terbaru atau unggulan
-    const tambahan = products
-      .filter(p => p.produkBaru || p.produkUtama)
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-      .slice(0, 2);
-
-    // Gabungkan & hilangkan duplikat berdasarkan _id
-    const tampilkan = [...Object.values(kategoriMap), ...tambahan].filter(
-      (v, i, arr) => arr.findIndex(p => p._id === v._id) === i
-    );
-
-    // Tampilkan produk ke HTML
-    tampilkan.forEach((p) => {
-      const div = document.createElement("div");
-      div.className = "menu-card";
-      div.innerHTML = `
-        <img src="https://obyshop-backend-production-4831.up.railway.app/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
-        <h3 class="menu-card-title">- ${p.nama || p.name} -</h3>
-        <p class="menu-card-price">Rp ${(p.harga || p.price).toLocaleString("id-ID")}</p>
-        <button onclick="addToCart('${p._id}', '${p.nama || p.name}', ${p.harga || p.price})">Tambah ke Keranjang</button>
-      `;
-      container.appendChild(div);
-    });
+    // Tampilkan semua produk pertama kali
+    tampilkanProduk(window.produkData);
   } catch (err) {
     console.error("❌ Gagal mengambil produk:", err);
   }
+
+  // Event pencarian (klik dan Enter)
+  const searchInput = document.getElementById("searchInput");
+  const searchButton = document.getElementById("searchButton");
+
+  if (searchInput) {
+    searchInput.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        cariProduk();
+      }
+    });
+  }
+  if (searchButton) {
+    searchButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      cariProduk();
+    });
+  }
 });
 
-// Tambah ke keranjang
-function addToCart(id, nama, harga) {
+// Fungsi render produk
+function tampilkanProduk(list) {
+  // Sesuaikan container produk: bisa di index.html (#produk-terbaru) atau search.html (#productGrid)
+  const container =
+    document.getElementById("produk-terbaru") ||
+    document.getElementById("productGrid");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (list.length === 0) {
+    container.innerHTML = "<p style='text-align:center; color:#e74c3c; font-weight:700;'>Produk tidak ditemukan.</p>";
+    return;
+  }
+
+  list.forEach((p) => {
+    const produkEl = document.createElement("div");
+    produkEl.className = container.id === "productGrid" ? "product-card" : "menu-card";
+
+    // Kalau di search.html, tombol "Beli Sekarang" WA, kalau di index.html tombol tambah keranjang
+    if (container.id === "productGrid") {
+      const pesanWA = encodeURIComponent(`Halo, saya mau beli produk *${p.nama}* dengan harga Rp ${Number(p.harga).toLocaleString()}`);
+      produkEl.innerHTML = `
+        <img src="${p.gambar}" alt="Foto produk ${p.nama}" />
+        <div class="product-info">
+          <h3>${p.nama}</h3>
+          <p class="description">${p.deskripsi || "Deskripsi produk tidak tersedia."}</p>
+          <p class="price">Rp ${Number(p.harga).toLocaleString()}</p>
+          <button onclick="window.open('https://wa.me/6281234567890?text=${pesanWA}', '_blank')" aria-label="Beli produk ${p.nama} sekarang">Beli Sekarang</button>
+        </div>
+      `;
+    } else {
+      produkEl.innerHTML = `
+        <img src="${p.gambar}" alt="${p.nama}" class="menu-card-img" />
+        <h3 class="menu-card-title">${p.nama}</h3>
+        <p class="menu-card-price">Rp ${Number(p.harga).toLocaleString("id-ID")}</p>
+        <button type="button" class="btn-beli">Tambah ke Keranjang</button>
+      `;
+      const btn = produkEl.querySelector("button");
+      if (btn) {
+        btn.addEventListener("click", () => addToCart(p._id, p.nama, p.harga, p.gambar));
+      }
+    }
+    container.appendChild(produkEl);
+  });
+}
+
+// Fungsi tambah ke keranjang (dipakai di index.html)
+function addToCart(id, nama, harga, gambar) {
   let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  const index = cart.findIndex(item => item.id === id);
+  const index = cart.findIndex((item) => item.id === id);
+
   if (index !== -1) {
     cart[index].qty += 1;
   } else {
-    cart.push({ id, nama, harga, qty: 1 });
+    cart.push({ id, nama, harga, gambar, qty: 1 });
   }
+
   localStorage.setItem("cart", JSON.stringify(cart));
   alert("Produk ditambahkan ke keranjang!");
+}
+
+// Fungsi pencarian produk
+function cariProduk() {
+  const keyword = document.getElementById("searchInput").value.toLowerCase();
+  const hasilFilter = window.produkData.filter((p) =>
+    p.nama.toLowerCase().includes(keyword)
+  );
+  tampilkanProduk(hasilFilter);
 }
