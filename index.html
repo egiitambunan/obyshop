@@ -22,82 +22,83 @@
     <div class="navbar-nav">
       <a href="#">Home</a>
       <a href="#about">Tentang Kami</a>
-     <a href="#menu">Menu</a> 
+      <a href="#menu">Produk</a>
       <a href="#contact">Kontak</a>
     </div>
-    <div class="navbar-extra">
-      <input type="text" id="searchInput" placeholder="Cari produk..." />
-      <button id="searchBtn"><i class="fas fa-search"></i></button>
-      <a href="cart.html" id="shopping-cart">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count" id="cartCount">0</span>
-      </a>
-      <a href="#" id="Aksesoris-menu"><i class="fas fa-bars"></i></a>
-    </div>
+   <div class="navbar-extra">
+  <form class="search-box" onsubmit="return submitSearch()" style="display:flex; align-items:center;">
+    <input type="text" id="searchInput" placeholder="Cari produk..." />
+<button id="se" onclick="cariProduk()"><i class="fas fa-search"></i></button>
+<a href="cart.html" id="shopping-cart">
+  <i class="fas fa-shopping-cart"></i>
+</a>
+<a href="#" id="Aksesoris-menu"><i class="fas fa-bars"></i></a>
+    </button>
+  </form>
+</div>
   </nav>
 
   <!-- Hero -->
   <section class="hero" id="home">
     <main class="content">
       <h1 id="hero-title">Mari Lihat <span>Toko Kami</span></h1>
-      <p id="hero-subtitle">Temukan berbagai aksesoris wanita dan aksesoris HP yang stylish dan berkualitas untuk melengkapi penampilan dan gadget Anda.</p>
-      <a href="#menu" class="Home">Beli Sekarang</a>
+      <p id="hero-subtitle" class="section-title">Temukan berbagai aksesoris wanita dan aksesoris HP yang stylish dan berkualitas untuk melengkapi penampilan dan gadget Anda.</p>
+      <a href="#menu" class="btn beli-box">Beli Sekarang</a>
     </main>
   </section>
 
-  <!-- About -->
+<!-- About -->
 <section id="about" class="about-new">
   <div class="container">
     <h2 class="section-title">Tentang <span>ObiShop</span></h2>
-    <p id="about-text"></p>
-    <div class="about-grid">
-      <div class="about-card scroll-animate">
-          <div class="video-wrapper" id="videoWrapper1"></div>
-        <div class="about-info">
-          <h3 id="title1">Video Toko Kami</h3>
-          <p id="desc1">Menampilkan suasana dan kepercayaan toko ObiShop...</p>
-        </div>
+    <p class="section-subtext">Kenali lebih dekat toko kami, produk unggulan, dan kepercayaan pelanggan setia kami.</p>
+    <div class="row" id="about-text"></div>
+
+    <!-- Tambahan Video -->
+    <div class="about-videos">
+      <div class="video-card">
+        <video controls>
+          <source src="./img/videos/Toko.mp4" type="video/mp4">
+          Browser Anda tidak mendukung video tag.
+        </video>
+        <p class="video-desc">Suasana dan tampilan toko ObiShop yang nyaman untuk berbelanja.</p>
       </div>
 
-      <div class="about-card scroll-animate">
-          <div class="video-wrapper" id="videoWrapper2"></div>
-        <div class="about-info">
-          <h3 id="title2">Produk Unggulan</h3>
-          <p id="desc2">Menampilkan produk-produk aksesoris pilihan...</p>
-        </div>
+      <div class="video-card">
+        <video controls>
+          <source src="./img/videos/cincin.mp4" type="video/mp4">
+          Browser Anda tidak mendukung video tag.
+        </video>
+        <p class="video-desc">Koleksi cincin elegan untuk melengkapi penampilan Anda.</p>
       </div>
 
-      <div class="about-card scroll-animate">
-          <div class="video-wrapper" id="videoWrapper3"></div>
-        <div class="about-info">
-          <h3 id="title3">Produk Baru</h3>
-          <p id="desc3">Produk baru toko kami...</p>
-        </div>
+      <div class="video-card">
+        <video controls>
+          <source src="./img/videos/gantungan kunci.mp4" type="video/mp4">
+          Browser Anda tidak mendukung video tag.
+        </video>
+        <p class="video-desc">Beragam gantungan kunci karakter unik dan lucu.</p>
       </div>
     </div>
+    <!-- Akhir Tambahan Video -->
   </div>
 </section>
 
   <!-- Menu -->
   <section id="menu" class="menu">
-    <h2><span>Menu</span> Kami</h2>
-    <p>Temukan berbagai pilihan terbaik dari produk unggulan kami...</p>
- <div class="produk-grid" id="produk-terbaru"></div>
+    <h2><span>Poduk</span> Kami</h2>
+    <p class="section-subtext">Temukan berbagai pilihan terbaik dari produk unggulan kami...</p>
+    <div class="row" id="produk-terbaru"></div>
   </section>
 
   <!-- Contact -->
   <section id="contact" class="contact">
     <h2><span>Kontak</span> Kami</h2>
-    <p>Hubungi kami melalui peta atau langsung lewat WhatsApp...</p>
+    <p class="section-subtext">Hubungi kami melalui peta atau langsung lewat WhatsApp...</p>
     <div class="row contact-container">
       <div class="map-container">
-     <iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31862.976493889306!2d99.39073955!3d3.38142355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3033e8228af9ba4f%3A0xc85fff038468603!2sMedang%2C%20Kec.%20Medang%20Deras%2C%20Kabupaten%20Batu%20Bara%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1751613845197!5m2!1sid!2sid" 
-  width="100%" height="300" style="border:0;" 
-  allowfullscreen="" loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
-</div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31862.97509334894!2d99.3701398149921!3d3.381466173353755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3033e8228af9ba4f%3A0xc85fff038468603!2sMedang%2C%20Kec.%20Medang%20Deras%2C%20Kabupaten%20Batu%20Bara%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1754724061223!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
       <div class="contact-info-box">
         <h3>Obi Shop</h3>
         <p><i class="fas fa-map-marker-alt"></i> <span id="contact-address">Deras, Batu Bara, Sumut</span></p>
@@ -137,21 +138,12 @@
       <div onclick="kirimPesan('Halo, saya tertarik aksesoris wanita, bisa info?')">👜 Aksesoris Wanita</div>
       <div onclick="kirimPesan('Ada stok gantungan kunci karakter?')">🔑 Gantungan Kunci</div>
       <hr style="border-color: #333" />
-      <div onclick="kirimPesan('Hallo Toko Oby Shop, saya ingin pesan produk. Nama:\nAlamat:\nProduk:\nJumlah Produk:\nMetode Pemesanan:')">📝 Form Pemesanan</div>
+      <div onclick="kirimPesan('Halo, saya ingin pesan produk. Nama:\nAlamat:\nProduk:')">📝 Form Pemesanan</div>
     </div>
   </div>
-  <!-- Modal Preview Video -->
-<div id="videoModal" class="modal-video">
-  <div class="modal-content">
-    <span class="modal-close" onclick="tutupModalVideo()">✕</span>
-    <video id="modalVideo" controls autoplay></video>
-  </div>
-</div>
 
   <!-- Scripts -->
-   <script src="js/script.js"></script>
-  <script src="js/fetch-data.js"></script>
-
+  <script src="js/script.js"></script>
   <script>
     function formatRupiah(angka) {
       return "IDR " + angka.toLocaleString("id-ID");
@@ -164,11 +156,10 @@
     }
 
     function kirimPesan(pesan) {
-    const waHref = document.querySelector(".wa-bubble a")?.href;
-    const nomor = waHref?.replace("https://wa.me/", "").split("?")[0] || "6281234567890";
-    const url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
-    window.open(url, "_blank");
-  }
+      const noHP = "6281234567890";
+      const link = `https://wa.me/${noHP}?text=${encodeURIComponent(pesan)}`;
+      window.open(link, "_blank");
+    }
 
     document.addEventListener("click", function (e) {
       const bubble = document.getElementById("waBubble");
@@ -191,13 +182,12 @@
         const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
         waBubble.style.display = isVisible ? "none" : "block";
       });
-      
+
       fetchProdukDariBackend();
     });
-  
-    // Load Dinamis dari Backend
+
     async function loadContentFromBackend() {
-      const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/content");
+      const res = await fetch("http://localhost:5000/api/content");
       const content = await res.json();
 
       if (content.heroTitle) document.getElementById("hero-title").innerHTML = content.heroTitle;
@@ -205,47 +195,10 @@
       if (content.heroTitleColor) document.getElementById("hero-title").style.color = content.heroTitleColor;
       if (content.heroSubtitleColor) document.getElementById("hero-subtitle").style.color = content.heroSubtitleColor;
       if (content.heroBackgroundImage) {
-        document.querySelector(".hero").style.backgroundImage = `url(https://obyshop-backend-production-4831.up.railway.app${content.heroBackgroundImage})`;
+        document.querySelector(".hero").style.backgroundImage = `url(http://localhost:5000${content.heroBackgroundImage})`;
       }
 
       if (content.aboutText) document.getElementById("about-text").textContent = content.aboutText;
-
-const root = document.documentElement;
-// Tentang Kami - Load 3 video dan deskripsi
-if (content.aboutVideos && Array.isArray(content.aboutVideos)) {
-  content.aboutVideos.forEach((v, i) => {
-    const wrapper = document.getElementById(`videoWrapper${i + 1}`);
-    const titleEl = document.getElementById(`title${i + 1}`);
-    const descEl = document.getElementById(`desc${i + 1}`);
-
-    if (titleEl && v.title) titleEl.textContent = v.title;
-    if (descEl && v.desc) descEl.textContent = v.desc;
-
-    if (!wrapper || !v.videoUrl) return;
-
-    wrapper.innerHTML = ""; // Kosongkan dulu kontennya
-
-    if (v.videoUrl.startsWith("http") && v.videoUrl.includes("youtube.com")) {
-      const iframe = document.createElement("iframe");
-      iframe.src = v.videoUrl.replace("watch?v=", "embed/") + "?autoplay=0&mute=1";
-      iframe.frameBorder = 0;
-      iframe.allow = "autoplay; encrypted-media";
-      iframe.allowFullscreen = true;
-      iframe.style.width = "100%";
-      iframe.style.aspectRatio = "16/9";
-      wrapper.appendChild(iframe);
-    } else {
-      const video = document.createElement("video");
-      video.src = v.videoUrl.startsWith("/") ? `https://obyshop-backend-production-4831.up.railway.app${v.videoUrl}` : v.videoUrl;
-      video.controls = true;
-      video.playsInline = true;
-      video.muted = false;
-      video.autoplay = false;
-      video.style.width = "100%";
-      wrapper.appendChild(video);
-    }
-  });
-}
 
       if (content.contactInfo?.phone) {
         document.getElementById("contact-phone").textContent = content.contactInfo.phone;
@@ -259,11 +212,9 @@ if (content.aboutVideos && Array.isArray(content.aboutVideos)) {
         document.getElementById("contact-address").textContent = content.contactInfo.address;
       }
 
-    if (content.whatsapp?.bubbleButton) {
-  whatsappBubbleNumber = content.whatsapp.bubbleButton; // simpan ke variabel global
-  document.querySelector(".wa-bubble a").href = `https://wa.me/${whatsappBubbleNumber}`;
-}
-
+      if (content.whatsapp?.bubbleButton) {
+        document.querySelector(".wa-bubble a").href = `https://wa.me/${content.whatsapp.bubbleButton}`;
+      }
       if (content.whatsapp?.contactButton) {
         const cta = document.querySelector(".contact .cta");
         if (cta) cta.href = `https://wa.me/${content.whatsapp.contactButton}`;
@@ -281,70 +232,67 @@ if (content.aboutVideos && Array.isArray(content.aboutVideos)) {
 
       if (content.theme?.primaryColor) document.documentElement.style.setProperty("--primary", content.theme.primaryColor);
       if (content.theme?.backgroundColor) document.documentElement.style.setProperty("--bg", content.theme.backgroundColor);
-
     }
 
     loadContentFromBackend();
-    
+
+   let semuaProduk = []; // simpan semua produk yang di-fetch
+
 async function fetchProdukDariBackend() {
   try {
-    const res = await fetch("https://obyshop-backend-production-4831.up.railway.app/api/products");
-    const allProduk = await res.json();
-    const container = document.getElementById("produk-terbaru");
-    container.innerHTML = "";
-
-    // Tampilkan semua produk dari backend tanpa filter kategori
-    const tampilkan = allProduk;
-
-    tampilkan.forEach((p) => {
-      const div = document.createElement("div");
-      div.className = "menu-card";
-      div.innerHTML = `
-<img src="https://obyshop-backend-production-4831.up.railway.app/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
-<h3 class="menu-card-title">- ${p.nama || p.name} -</h3>
-<p class="menu-card-price">Rp ${(p.harga || p.price).toLocaleString("id-ID")}</p>
-<button onclick="addToCart('${p._id}', '${p.nama || p.name}', ${p.harga || p.price})">Tambah ke Keranjang</button>
-      `;
-      container.appendChild(div);
-    });
+    const res = await fetch("http://localhost:5000/api/products");
+    semuaProduk = await res.json();
+    tampilkanProduk(semuaProduk);
   } catch (err) {
     console.error("❌ Gagal fetch produk dari backend:", err);
   }
 }
 
-  function addToCart(id, nama, harga) {
-    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const index = cart.findIndex(item => item.id === id);
+function tampilkanProduk(produkList) {
+  const container = document.getElementById("produk-terbaru");
+  container.innerHTML = "";
 
-    if (index !== -1) {
-      cart[index].qty += 1;
-    } else {
-      cart.push({ id, nama, harga, qty: 1 });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Produk ditambahkan ke keranjang!");
+  if (produkList.length === 0) {
+    container.innerHTML = "<p>Produk tidak ditemukan.</p>";
+    return;
   }
-// Modal Preview Video
-function bukaModalVideo(src) {
-  const modal = document.getElementById("videoModal");
-  const video = document.getElementById("modalVideo");
-  video.src = src;
-  modal.style.display = "flex";
+
+  produkList.forEach((p) => {
+    const div = document.createElement("div");
+    div.className = "menu-card";
+    div.innerHTML = `
+      <img src="http://localhost:5000/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
+      <h3 class="menu-card-title">- ${p.nama || p.name} -</h3>
+      <p class="menu-card-price">Rp ${(p.harga || p.price).toLocaleString("id-ID")}</p>
+      <button onclick="addToCart('${p._id}', '${p.nama || p.name}', ${p.harga || p.price}, 'http://localhost:5000/uploads/products/${p.imageFilename}')">Tambah ke Keranjang</button>
+    `;
+    container.appendChild(div);
+  });
 }
 
-function tutupModalVideo() {
-  const modal = document.getElementById("videoModal");
-  const video = document.getElementById("modalVideo");
-  modal.style.display = "none";
-  video.pause();
-  video.currentTime = 0;
+function submitSearch() {
+  const keyword = document.getElementById("searchInput").value.trim();
+  if (!keyword) {
+    alert("Masukkan kata kunci pencarian.");
+    return false;
+  }
+  window.location.href = `search.html?keyword=${encodeURIComponent(keyword)}`;
+  return false;
 }
 
-// Tutup modal jika klik di luar video
-document.getElementById("videoModal").addEventListener("click", function (e) {
-  if (e.target === this) tutupModalVideo();
-});
+    function addToCart(id, nama, harga, gambar) {
+      let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      const index = cart.findIndex(item => item.id === id);
+
+      if (index !== -1) {
+        cart[index].qty += 1;
+      } else {
+        cart.push({ id, nama, harga, gambar, qty: 1 });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Produk ditambahkan ke keranjang!");
+    }
   </script>
 </body>
 </html>
