@@ -187,7 +187,7 @@
     });
 
     async function loadContentFromBackend() {
-      const res = await fetch("http://localhost:5000/api/content");
+      const res = await fetch("https://backend-obyshop-production.up.railway.app/api/content");
       const content = await res.json();
 
       if (content.heroTitle) document.getElementById("hero-title").innerHTML = content.heroTitle;
@@ -195,7 +195,7 @@
       if (content.heroTitleColor) document.getElementById("hero-title").style.color = content.heroTitleColor;
       if (content.heroSubtitleColor) document.getElementById("hero-subtitle").style.color = content.heroSubtitleColor;
       if (content.heroBackgroundImage) {
-        document.querySelector(".hero").style.backgroundImage = `url(http://localhost:5000${content.heroBackgroundImage})`;
+        document.querySelector(".hero").style.backgroundImage = `url(https://backend-obyshop-production.up.railway.app${content.heroBackgroundImage})`;
       }
 
       if (content.aboutText) document.getElementById("about-text").textContent = content.aboutText;
@@ -240,7 +240,7 @@
 
 async function fetchProdukDariBackend() {
   try {
-    const res = await fetch("http://localhost:5000/api/products");
+    const res = await fetch("https://backend-obyshop-production.up.railway.app/api/products");
     semuaProduk = await res.json();
     tampilkanProduk(semuaProduk);
   } catch (err) {
@@ -261,10 +261,10 @@ function tampilkanProduk(produkList) {
     const div = document.createElement("div");
     div.className = "menu-card";
     div.innerHTML = `
-      <img src="http://localhost:5000/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
+      <img src="https://backend-obyshop-production.up.railway.app/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
       <h3 class="menu-card-title">- ${p.nama || p.name} -</h3>
       <p class="menu-card-price">Rp ${(p.harga || p.price).toLocaleString("id-ID")}</p>
-      <button onclick="addToCart('${p._id}', '${p.nama || p.name}', ${p.harga || p.price}, 'http://localhost:5000/uploads/products/${p.imageFilename}')">Tambah ke Keranjang</button>
+      <button onclick="addToCart('${p._id}', '${p.nama || p.name}', ${p.harga || p.price}, 'https://backend-obyshop-production.up.railway.app/uploads/products/${p.imageFilename}')">Tambah ke Keranjang</button>
     `;
     container.appendChild(div);
   });
@@ -296,3 +296,4 @@ function submitSearch() {
   </script>
 </body>
 </html>
+
