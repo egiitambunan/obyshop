@@ -218,7 +218,7 @@
   }
 function buatProdukHTML(p) {
   const gambar = p.imageFilename 
-    ? `http://localhost:5000/uploads/products/${p.imageFilename}`
+    ? `https://backend-obyshop-production.up.railway.app/uploads/products/${p.imageFilename}`
     : "https://via.placeholder.com/300x200?text=No+Image";
 
   const deskripsi = p.deskripsi ? p.deskripsi : "Deskripsi produk tidak tersedia.";
@@ -249,7 +249,7 @@ function closeModal() {
 
   async function fetchProduk(keyword = "") {
     try {
-      let url = "http://localhost:5000/api/products";
+      let url = "https://backend-obyshop-production.up.railway.app/api/products";
       if (keyword) url += `?q=${encodeURIComponent(keyword)}`;
 
       const res = await fetch(url);
@@ -324,3 +324,4 @@ function closeModal() {
 </style>
 </body>
 </html>
+
