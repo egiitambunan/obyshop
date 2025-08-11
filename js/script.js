@@ -26,7 +26,7 @@ function buatKartuProduk(produk) {
   return `
     <div class="product-card">
       <img src="${produk.imageFilename 
-        ? `/uploads/products/${produk.imageFilename}` 
+        ? `https://backend-obyshop-production.up.railway.app/uploads/products/${produk.imageFilename}` 
         : 'https://via.placeholder.com/300x300?text=No+Image'}" alt="${produk.nama}">
       <h3>${produk.nama}</h3>
       <p class="harga">Rp ${Number(produk.harga).toLocaleString()}</p>
@@ -141,3 +141,4 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchProducts();
   }
 });
+
