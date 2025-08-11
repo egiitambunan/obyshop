@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const base = "http://localhost:5000";
+  const base = "https://backend-obyshop-production.up.railway.app";
 
   try {
     const res = await fetch(`${base}/api/content`);
@@ -194,3 +194,4 @@ function cariProduk() {
   );
   tampilkanProduk(hasilFilter);
 }
+
