@@ -680,7 +680,7 @@ h2 {
   }
 
   .navbar .navbar-nav a {
-    color: #fff;
+    color: #000000;
     display: block;
     margin: 1.5rem;
     padding: 0.5rem;
@@ -859,3 +859,4 @@ i.fas {
   .video-card {
     max-width: 100%;
   }
+
