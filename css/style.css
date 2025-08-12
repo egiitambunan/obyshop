@@ -1,4 +1,3 @@
-
 :root {
   --primary: #b6895b;
   --bg: #010101;
@@ -739,7 +738,24 @@ h2 {
 /* Mobile Phone */
 @media (max-width: 450px) {
   html {
-    font-size: 55%;
+    font-size: 60%; /* sedikit lebih besar agar teks tetap terbaca jelas di HP */
+  }
+
+  body {
+    padding: 0 10px; /* kasih jarak biar konten tidak mepet pinggir layar */
+  }
+
+  img {
+    max-width: 100%;
+    height: auto; /* gambar otomatis menyesuaikan layar */
+  }
+
+  h1, h2, h3 {
+    line-height: 1.3; /* rapikan jarak antar baris judul */
+  }
+
+  button, a {
+    font-size: 1rem; /* tombol tetap enak dilihat dan diklik */
   }
 }
 /* TikTok icon follow FontAwesome */
@@ -842,5 +858,20 @@ i.fas {
   }
   .video-card {
     max-width: 100%;
+  }
+}
+/* Mobile Phone */
+@media (max-width: 450px) {
+  html {
+    font-size: 55%;
+  }
+
+  /* Styling menu di mobile agar kontras di background terang */
+  .navbar .navbar-nav a {
+    color: #fff; /* tetap putih */
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.5); /* background gelap transparan */
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
   }
 }
