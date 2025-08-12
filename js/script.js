@@ -17,7 +17,7 @@ document.addEventListener("click", (e) => {
 // =========================
 // Konfigurasi API
 // =========================
-const apiUrl = "/api/products";
+const apiUrl = "https://backend-obyshop-production.up.railway.app/api/products";
 
 // =========================
 // Fungsi buat kartu produk
@@ -141,4 +141,5 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchProducts();
   }
 });
+
 
