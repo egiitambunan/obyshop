@@ -859,19 +859,3 @@ i.fas {
   .video-card {
     max-width: 100%;
   }
-}
-/* Mobile Phone */
-@media (max-width: 450px) {
-  html {
-    font-size: 55%;
-  }
-
-  /* Styling menu di mobile agar kontras di background terang */
-  .navbar .navbar-nav a {
-    color: #fff; /* tetap putih */
-    font-weight: bold;
-    background: rgba(0, 0, 0, 0.5); /* background gelap transparan */
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-  }
-}
